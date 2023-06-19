@@ -1,9 +1,6 @@
 import {Paragraph, Superscript, Subscript, Strikethrough} from './src/index.js'
 
 const editor = new EditorJS({
-    /**
-     * Id of Element that should contain Editor instance
-     */
     holder: 'editor',
     tools: {
         paragraph: {
