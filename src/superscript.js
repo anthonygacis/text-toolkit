@@ -3,10 +3,15 @@ import SuperScriptIcon from './asset/superscript.svg?raw'
 
 export default class Superscript {
 
-    constructor({api}) {
+    constructor({api, config}) {
         this.api = api;
+        this.config = config
         this.button = null;
         this._state = false;
+
+        this._css = {
+            textClass: config.textClass
+        }
 
         this.tag = 'SUP';
     }
@@ -58,10 +63,11 @@ export default class Superscript {
 
     wrap(range) {
         const selectedText = range.extractContents();
-        const mark = document.createElement(this.tag);
-        mark.appendChild(selectedText);
-        range.insertNode(mark);
-        this.api.selection.expandToTag(mark);
+        const tag = document.createElement(this.tag);
+        if(this._css.textClass) tag.classList.add(this._css.textClass)
+        tag.appendChild(selectedText);
+        range.insertNode(tag);
+        this.api.selection.expandToTag(tag);
     }
 
     unwrap(termWrapper) {

@@ -1,7 +1,7 @@
 {
 	"name": "@ageesea/text-toolkit",
 	"version": "0.1.0",
-	"description": "A text toolkit for Editor JS",
+	"description": "A collection of plugins for EditorJS",
 	"jsdelivr": "dist/text-toolkit.umd.js",
 	"unpkg": "dist/text-toolkit.umd.js",
 	"type": "module",

@@ -10,7 +10,12 @@ const editor = new EditorJS({
             class: Paragraph,
             inlineToolbar: true
         },
-        superscript: Superscript,
+        superscript: {
+            class: Superscript,
+            config: {
+                textClass: 'custom-superscript'
+            }
+        },
         subscript: Subscript,
         strikethrough: Strikethrough
     },

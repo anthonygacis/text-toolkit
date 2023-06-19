@@ -3,11 +3,11 @@
 layout: home
 
 hero:
-  name: "PSGC-JS"
-  tagline: A collection of philippine geographic data based on PSGC
+  name: "Text Toolkit"
+  tagline: A collection of plugins for EditorJS
   image:
     src: /logo.png
-    alt: PSGC-JS Logo
+    alt: Logo
   actions:
     - theme: brand
       text: Get Started
@@ -18,7 +18,7 @@ hero:
 
 features:
   - icon: 🚀
-    title: Latest Update
-    details: As of 1Q 2023 publication
+    title: 4 Text Plugins
+    details: Paragraph with alignment, Superscript, Subscript, and Strikethrough
 ---
 
