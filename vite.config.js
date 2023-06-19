@@ -5,8 +5,8 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve(__dirname, 'src/index.js'),
-            name: 'Paragraph',
-            fileName: 'editor-js-paragraph'
+            name: 'TextToolkit',
+            fileName: 'text-toolkit'
         }
     },
 })
