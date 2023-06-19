@@ -5,4 +5,6 @@ A collection of text plugins for EditorJS
 ## Get Started
 
 
-## Reference
+## Credits
+
+
