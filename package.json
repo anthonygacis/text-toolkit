@@ -1,0 +1,63 @@
+{
+  "name": "@ageesea/text-toolkit",
+  "version": "0.0.1",
+  "description": "A text toolkit for Editor JS",
+  "jsdelivr": "dist/text-toolkit.umd.js",
+  "unpkg": "dist/text-toolkit.umd.js",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/text-toolkit.umd.cjs",
+  "module": "./dist/text-toolkit.js",
+  "exports": {
+    ".": {
+      "import": "./dist/text-toolkit.js",
+      "require": "./dist/text-toolkit.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "rimraf dist && vite build",
+    "build:action": "vite build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "update:package": "json -I -f package.json -o json-tab"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonygacis/text-toolkit.git"
+  },
+  "keywords": [
+    "editor-js",
+    "paragraph",
+    "text",
+    "toolkit",
+    "tool",
+    "plugin"
+  ],
+  "author": "Anthony Gacis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anthonygacis/text-toolkit/issues"
+  },
+  "homepage": "https://github.com/anthonygacis/text-toolkit",
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "axios": "^1.3.5",
+    "babel-loader": "^8.2.3",
+    "jest": "^27.3.1",
+    "json": "^11.0.0",
+    "lodash": "^4.17.21",
+    "vite": "^3.2.3",
+    "vitepress": "^1.0.0-alpha.65",
+    "vitest": "^0.25.4"
+  },
+  "dependencies": {
+    "@codexteam/icons": "^0.3.0"
+  }
+}

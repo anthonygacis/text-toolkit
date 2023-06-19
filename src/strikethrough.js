@@ -1,19 +1,19 @@
 import './index.css'
-import SuperScriptIcon from './asset/subscript.svg?raw'
+import StrikethroughIcon from './asset/strikethrough.svg?raw'
 
-export default class Subscript {
+export default class Strikethrough {
 
     constructor({api}) {
         this.api = api;
         this.button = null;
         this._state = false;
 
-        this.tag = 'SUB';
+        this.tag = 'S';
     }
 
     static get sanitize() {
         return {
-            sub: true
+            s: true
         };
     }
 
@@ -34,7 +34,7 @@ export default class Subscript {
     render() {
         this.button = document.createElement('button');
         this.button.type = 'button';
-        this.button.innerHTML = SuperScriptIcon
+        this.button.innerHTML = StrikethroughIcon
         this.button.classList.add(this.api.styles.inlineToolButton);
 
         return this.button;

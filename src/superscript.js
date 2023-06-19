@@ -1,19 +1,19 @@
 import './index.css'
-import SuperScriptIcon from './asset/subscript.svg?raw'
+import SuperScriptIcon from './asset/superscript.svg?raw'
 
-export default class Subscript {
+export default class Superscript {
 
     constructor({api}) {
         this.api = api;
         this.button = null;
         this._state = false;
 
-        this.tag = 'SUB';
+        this.tag = 'SUP';
     }
 
     static get sanitize() {
         return {
-            sub: true
+            sup: true
         };
     }
 
