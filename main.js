@@ -1,4 +1,4 @@
-import {Paragraph, Superscript, Subscript, Strikethrough} from './src/index.js'
+import {Paragraph, Superscript, Subscript, Strikethrough} from './src/index.ts'
 
 const editor = new EditorJS({
     holder: 'editor',
