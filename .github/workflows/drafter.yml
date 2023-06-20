@@ -44,10 +44,15 @@ jobs:
               git diff --quiet package.json || echo "changed=true" >> $GITHUB_OUTPUT
       -   name: Commit and push changes
           if: steps.verify_diff.outputs.changed == 'true'
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: |
-              git config user.name "Anthony Gacis"
-              git config user.email "30620409+anthonygacis@users.noreply.github.com"
-              git commit -am "Update package.json version"
-              git push
+          uses: peter-evans/create-pull-request@v5
+          with:
+              token: ${{ secrets.GITHUB_TOKEN }}
+              commit-message: Update system version
+              committer: GitHub <noreply@github.com>
+              author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+              branch: chore/update-version
+              delete-branch: true
+              title: 'Update package version'
+              body: |
+                  Update package version
+              draft: false
