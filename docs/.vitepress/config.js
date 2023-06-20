@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "PSGC-JS",
-  description: "A collection of philippine geographic data based on PSGC",
+  title: "Text Toolkit",
+  description: "A collection of plugins for EditorJS",
   head: [
     [
       'link',
@@ -25,7 +25,7 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/logo.png",
-    siteTitle: "PSGC-JS",
+    siteTitle: "Text Toolkit",
     editLink: {
       pattern: 'https://github.com/anthonygacis/psgc-js/edit/main/docs/:path',
       text: 'Edit this page on GitHub'

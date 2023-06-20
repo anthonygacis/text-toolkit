@@ -1,16 +1,18 @@
-import {Paragraph, Superscript, Subscript, Strikethrough} from './src/index.js'
+import {Paragraph, Superscript, Subscript, Strikethrough} from './src/index.ts'
 
 const editor = new EditorJS({
-    /**
-     * Id of Element that should contain Editor instance
-     */
     holder: 'editor',
     tools: {
         paragraph: {
             class: Paragraph,
             inlineToolbar: true
         },
-        superscript: Superscript,
+        superscript: {
+            class: Superscript,
+            config: {
+                textClass: 'custom-superscript'
+            }
+        },
         subscript: Subscript,
         strikethrough: Strikethrough
     },

@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, reactive } from 'vue';
-import PSGC from '../../../src/index'
+import PSGC from '../../../src/index.js'
 
 
 const props = defineProps(['geoCode', 'type'])

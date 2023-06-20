@@ -7,4 +7,4 @@ A collection of text plugins for EditorJS
 
 ## Credits
 
-
+- [paragraph-with-alignment](https://github.com/kaaaaaaaaaaai/paragraph-with-alignment) - for the paragraph-alignment

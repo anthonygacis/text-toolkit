@@ -1,5 +1,5 @@
 <script setup>
-import PSGC from "../../src/index.js";
+import PSGC from "../../src/index.ts";
 import { onMounted } from "vue"
 
 onMounted(() => {

@@ -1,88 +1,54 @@
 import './index.css';
-import { IconAlignCenter, IconAlignJustify, IconAlignLeft, IconAlignRight, IconText } from '@codexteam/icons';
-const alignmentStyles = {
+import {IconAlignCenter, IconAlignJustify, IconAlignLeft, IconAlignRight, IconText} from '@codexteam/icons'
+
+type Alignment = {
+    left: string
+    right: string
+    center: string
+    justify: string
+}
+
+const alignmentStyles: Alignment = {
     left: 'ce-paragraph--left',
     center: 'ce-paragraph--center',
     right: 'ce-paragraph--right',
     justify: 'ce-paragraph--justify',
-};
+}
+
+type AlignmentObj = keyof typeof alignmentStyles
+
 export default class Paragraph {
-    constructor({ data, config, api, readOnly }) {
-        Object.defineProperty(this, "config", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "readOnly", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_CSS", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "api", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_placeholder", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_data", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_element", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_preserveBlank", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "settings", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "CSS", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
+    private config: Config;
+    private readOnly: boolean;
+    private _CSS: { block: any; wrapper: string; alignment: Alignment };
+    private api: Api;
+    private _placeholder: any;
+    private _data: Data;
+    private _element: HTMLElement;
+    private _preserveBlank: any;
+    private settings: Array<any>;
+    private CSS: { input: any; settingsButton: any; settingsButtonActive: any; baseClass: Object; loading: any };
+
+    constructor({ data, config, api, readOnly}: BlockConstruct) {
         this.api = api;
         this.config = config;
         this.readOnly = readOnly;
+
         this._CSS = {
             block: this.api.styles.block,
             wrapper: 'ce-paragraph',
             alignment: alignmentStyles
         };
+
         if (!this.readOnly) {
             this.onKeyUp = this.onKeyUp.bind(this);
         }
+
         this._placeholder = config.placeholder ? config.placeholder : Paragraph.DEFAULT_PLACEHOLDER;
         this._data = {};
         this._element = this.drawView();
         this._preserveBlank = config.preserveBlank !== undefined ? config.preserveBlank : false;
+
         this.settings = [
             {
                 name: 'left',
@@ -101,25 +67,31 @@ export default class Paragraph {
                 icon: IconAlignJustify
             }
         ];
+
         this.CSS = {
             baseClass: this.api.styles.block,
             loading: this.api.styles.loader,
             input: this.api.styles.input,
             settingsButton: this.api.styles.settingsButton,
             settingsButtonActive: this.api.styles.settingsButtonActive,
-        };
+        }
+
         this._data = {
             text: data.text || '',
             alignment: data.alignment || config.defaultAlignment || Paragraph.DEFAULT_ALIGNMENT
         };
+
         this.data = data;
     }
+
     static get DEFAULT_PLACEHOLDER() {
         return '';
     }
+
     static get DEFAULT_ALIGNMENT() {
         return Paragraph.ALIGNMENTS.left;
     }
+
     static get ALIGNMENTS() {
         return {
             left: 'left',
@@ -128,12 +100,14 @@ export default class Paragraph {
             justify: 'justify'
         };
     }
+
     static get conversionConfig() {
         return {
-            export: 'text',
+            export: 'text', // to convert Paragraph to other block, use 'text' property of saved data
             import: 'text' // to covert other block's exported string to Paragraph, fill 'text' property of tool data
         };
     }
+
     static get sanitize() {
         return {
             text: {
@@ -141,57 +115,73 @@ export default class Paragraph {
             }
         };
     }
+
     static get isReadOnlySupported() {
         return true;
     }
+
     static get pasteConfig() {
         return {
             tags: ['P']
         };
     }
+
     static get toolbox() {
         return {
             icon: IconText,
             title: 'Text 1'
         };
     }
+
     get data() {
         return this._data;
     }
-    set data(data) {
+
+    set data(data: Data) {
         this._data = {
             text: data.text || '',
             alignment: data.alignment || this.config.defaultAlignment || Paragraph.DEFAULT_ALIGNMENT
-        };
+        }
+
         this._element.innerHTML = this._data.text || '';
     }
-    onKeyUp(e) {
+
+    onKeyUp(e: KeyboardEvent) {
         if (e.code !== 'Backspace' && e.code !== 'Delete') {
             return;
         }
-        const { textContent } = this._element;
+
+        const {textContent} = this._element;
+
         if (textContent === '') {
             this._element.innerHTML = '';
         }
     }
+
     drawView() {
         let div = document.createElement('DIV');
+
         div.classList.add(this._CSS.wrapper, this._CSS.block);
         div.contentEditable = String(false);
         div.dataset.placeholder = this.api.i18n.t(this._placeholder);
+
         if (!this.readOnly) {
             div.contentEditable = String(true);
             div.addEventListener('keyup', this.onKeyUp);
         }
+
         return div;
     }
+
     render() {
         return this._element;
     }
+
     renderSettings() {
         const wrapper = document.createElement('div');
-        wrapper.style.display = 'flex';
-        wrapper.style.justifyContent = 'center';
+
+        wrapper.style.display = 'flex'
+        wrapper.style.justifyContent = 'center'
         this.settings.map(tune => {
             const button = document.createElement('div');
             button.classList.add('cdx-settings-button');
@@ -205,47 +195,58 @@ export default class Paragraph {
                 this._rerenderSettings(elements);
             });
         });
+
         return wrapper;
     }
-    _rerenderSettings(elements) {
+
+    _rerenderSettings(elements: HTMLDivElement[]) {
         elements.forEach((el, i) => {
-            const { name } = this.settings[i];
+            const { name } = this.settings[i] as { name: AlignmentObj };
             el.classList.toggle(this.CSS.settingsButtonActive, name === this.data.alignment);
-            this._element.classList.toggle(this._CSS.alignment[name], name === this.data.alignment);
+            this._element.classList.toggle(this._CSS.alignment[name], name === this.data.alignment)
         });
     }
-    _toggleTune(tune) {
+
+    _toggleTune(tune: any) {
         this.data.alignment = tune;
     }
-    merge(data) {
-        let text = '';
-        if (this.data.text) {
-            text += this.data.text + data.text;
+
+    merge(data: Data) {
+        let text: string = ''
+        if(this.data.text) {
+            text += this.data.text + data.text
         }
         let newData = {
             text: text,
             alignment: this.data.alignment,
         };
-        this._element.innerHTML = this.data.text;
+
+        this._element.innerHTML = <string>this.data.text;
+
         this.data = newData;
     }
-    validate(savedData) {
+
+    validate(savedData: any) {
         if (savedData.text.trim() === '' && !this._preserveBlank) {
             return false;
         }
+
         return true;
     }
-    save(toolsContent) {
+
+    save(toolsContent: any) {
         return {
             text: toolsContent.innerHTML,
             alignment: this.data.alignment
-        };
+        }
     }
-    onPaste(event) {
+
+    onPaste(event: any) {
         const data = {
             text: event.detail.data.innerHTML,
             alignment: this.config.defaultAlignment || Paragraph.DEFAULT_ALIGNMENT
         };
+
         this.data = data;
     }
 }
