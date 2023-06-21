@@ -25,12 +25,7 @@ onMounted(() => {
                 class: Paragraph,
                 inlineToolbar: true,
             },
-            superscript: {
-                class: Superscript,
-                config: {
-                    textClass: 'custom-superscript'
-                }
-            },
+            superscript: Superscript,
             subscript: Subscript,
             strikethrough: Strikethrough
         },

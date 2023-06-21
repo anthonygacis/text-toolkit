@@ -56,7 +56,9 @@ export default defineConfig({
       {
         text: 'Inline Tools',
         items: [
-          { text: 'Using Geographic Level', link: '/usage/using-geographic-level' },
+          { text: 'Superscript', link: '/inline-tools/superscript' },
+          { text: 'Subscript', link: '/inline-tools/subscript' },
+          { text: 'Strikethrough', link: '/inline-tools/strikethrough' },
         ]
       },
     ],

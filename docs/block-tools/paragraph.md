@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 # Paragraph
 
 Basic text tool with alignment (left, center, right, and justify)
@@ -32,11 +28,11 @@ let editor = EditorJS({
 
 The Paragraph Tool supports these configuration parameters:
 
-| Field            | Type      | Description        |
-|------------------|-----------| ------------------ |
-| placeholder      | `string`  | The placeholder. Will be shown only in the first paragraph when the whole editor is empty.  |
-| preserveBlank    | `boolean` | (default: `false`) Whether or not to keep blank paragraphs when saving editor data |
-| defaultAlignment | `string`  | (default: `false`) Whether or not to keep blank paragraphs when saving editor data |
+| Field            | Type      | Description                                                                                |
+|------------------|-----------|--------------------------------------------------------------------------------------------|
+| placeholder      | `string`  | The placeholder. Will be shown only in the first paragraph when the whole editor is empty. |
+| preserveBlank    | `boolean` | (default: `false`) Whether or not to keep blank paragraphs when saving editor data         |
+| defaultAlignment | `string`  | (default: `left`) The default alignment                                                    |
 
 ## Output Data
 
