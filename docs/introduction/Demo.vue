@@ -1,37 +1,65 @@
 <script setup>
-import PSGC from "../../src/index.ts";
 import { onMounted } from "vue"
+import EditorJS from "@editorjs/editorjs";
+import {Paragraph, Strikethrough, Subscript, Superscript} from "../../src/index.js";
+import {ref} from "../.vitepress/cache/deps/vue.js";
+
+const output = ref('')
+const editor = ref(null)
+
+function save() {
+    if(editor.value) {
+        console.log(editor.value)
+        editor.value.save().then((data) => {
+            output.value = data
+        })
+    }
+}
 
 onMounted(() => {
-    PSGC.init({
-        bind: {
-            region: "#regions",
-            province: "#provinces",
-            municipality: "#municipality",
-            barangay: "#barangay",
-        }
-    })
+    editor.value = new EditorJS({
+        holder: 'editor',
+        minHeight: 30,
+        tools: {
+            paragraph: {
+                class: Paragraph,
+                inlineToolbar: true,
+            },
+            superscript: Superscript,
+            subscript: Subscript,
+            strikethrough: Strikethrough
+        },
+        placeholder: 'Start typing ...'
+    });
 })
 </script>
 <template>
-    <div :class="$style['mb-3']">
-        <select :class="$style['demo-select']" id="regions"></select>
-        <select :class="$style['demo-select']" id="provinces"></select>
-        <select :class="$style['demo-select']" id="municipality"></select>
-        <select :class="$style['demo-select']" id="barangay"></select>
-    </div>
+    <div id="editor"></div>
+    <button id="btn-save" @click="save">Save</button>
+    <p>Output:</p>
+    <pre id="output" v-if="output">{{ JSON.stringify(output, null, 2) }}</pre>
 </template>
 
-<style module>
-.demo-select {
-    background-color: rgb(246, 246, 246);
-    border: 1px solid rgb(145, 145, 145);
-    padding: 5px 15px;
-    margin-right: 10px;
-    width: 20%;
+<style scoped>
+#btn-save {
+    background-color: #1CB6FF;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
-.mb-3 {
-    margin-bottom: 1.5em;
+#output {
+    background-color: #262335;
+    color: #D9D9A7;
+    padding: 5px 10px;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
 </style>

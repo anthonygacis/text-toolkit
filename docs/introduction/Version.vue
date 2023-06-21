@@ -7,7 +7,7 @@ const state = reactive({
 })
 
 onMounted(() => {
-    axios.get("https://registry.npmjs.org/@ageesea/psgc-js/latest").then(({ data }) => {
+    axios.get("https://registry.npmjs.org/@ageesea/text-toolkit/latest").then(({ data }) => {
         state.version = data.version
     })
 })

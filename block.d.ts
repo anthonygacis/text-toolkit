@@ -1,8 +1,8 @@
 
-type BlockConstruct = {
-    data: IData
-    config: IConfig
-    api: IApi
+interface BlockConstruct {
+    data: Data
+    config: Config
+    api: Api
     readOnly: boolean
 }
 
@@ -20,9 +20,8 @@ type Api = {
 }
 
 type Config = {
-    placeholder: string
-    preserveBlank: boolean
-    defaultAlignment: string
+    placeholder?: string
+    preserveBlank?: boolean
 }
 
 type Data = {
