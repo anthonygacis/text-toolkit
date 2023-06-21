@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, ref } from "vue"
-import {Paragraph, Strikethrough, Subscript, Superscript} from "../../dist/text-toolkit.js";
 
 const output = ref('')
 const editor = ref(null)
@@ -14,7 +13,8 @@ function save() {
 }
 
 onMounted(() => {
-    import('@editorjs/editorjs').then((EditorJS) => {
+    import('@editorjs/editorjs').then(async (EditorJS) => {
+        const {Paragraph, Strikethrough, Subscript, Superscript} = await import("../../src/index.ts")
         editor.value = new EditorJS.default({
             holder: 'editor',
             minHeight: 30,
