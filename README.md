@@ -4,6 +4,9 @@ A collection of text plugins for EditorJS
 
 ## Get Started
 
+- Install using npm
+  - `npm install @ageesea/text-toolkit`
+- See [docs](https://text-toolkit.anthonygacis.me) for details
 
 ## Credits
 
