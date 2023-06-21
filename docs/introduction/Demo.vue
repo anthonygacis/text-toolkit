@@ -1,14 +1,12 @@
 <script setup>
 import { onMounted, ref } from "vue"
-import EditorJS from "@editorjs/editorjs";
-import {Paragraph, Strikethrough, Subscript, Superscript} from "../../dist/text-toolkit.umd.cjs";
+import {Paragraph, Strikethrough, Subscript, Superscript} from "../../dist/text-toolkit.js";
 
 const output = ref('')
 const editor = ref(null)
 
 function save() {
     if(editor.value) {
-        console.log(editor.value)
         editor.value.save().then((data) => {
             output.value = data
         })
@@ -16,20 +14,22 @@ function save() {
 }
 
 onMounted(() => {
-    editor.value = new EditorJS({
-        holder: 'editor',
-        minHeight: 30,
-        tools: {
-            paragraph: {
-                class: Paragraph,
-                inlineToolbar: true,
+    import('@editorjs/editorjs').then((EditorJS) => {
+        editor.value = new EditorJS.default({
+            holder: 'editor',
+            minHeight: 30,
+            tools: {
+                paragraph: {
+                    class: Paragraph,
+                    inlineToolbar: true,
+                },
+                superscript: Superscript,
+                subscript: Subscript,
+                strikethrough: Strikethrough
             },
-            superscript: Superscript,
-            subscript: Subscript,
-            strikethrough: Strikethrough
-        },
-        placeholder: 'Start typing ...'
-    });
+            placeholder: 'Start typing ...'
+        });
+    })
 })
 </script>
 <template>
