@@ -22,7 +22,7 @@
 		"build": "rimraf dist && tsc && vite build",
 		"build:action": "vite build",
 		"docs:dev": "vitepress dev docs",
-		"docs:build": "npm run build && vitepress build docs",
+		"docs:build": "vitepress build docs",
 		"docs:preview": "vitepress preview docs",
 		"update:package": "json -I -f package.json -o json-tab"
 	},
