@@ -1,8 +1,7 @@
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, ref } from "vue"
 import EditorJS from "@editorjs/editorjs";
-import {Paragraph, Strikethrough, Subscript, Superscript} from "../../src/index.js";
-import {ref} from "../.vitepress/cache/deps/vue.js";
+import {Paragraph, Strikethrough, Subscript, Superscript} from "../../dist/text-toolkit.umd.cjs";
 
 const output = ref('')
 const editor = ref(null)
