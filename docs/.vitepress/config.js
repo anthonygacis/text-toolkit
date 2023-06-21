@@ -48,18 +48,17 @@ export default defineConfig({
         ]
       },
       {
-        text: 'API Usage',
+        text: 'Block Tools',
+        items: [
+          { text: 'Paragraph', link: '/block-tools/paragraph' },
+        ]
+      },
+      {
+        text: 'Inline Tools',
         items: [
           { text: 'Using Geographic Level', link: '/usage/using-geographic-level' },
         ]
       },
-      {
-        text: 'API',
-        items: [
-          { text: 'Available Methods', link: '/api/available-methods' },
-          { text: 'Region Code Reference', link: '/api/code-reference' },
-        ]
-      }
     ],
 
     socialLinks: [

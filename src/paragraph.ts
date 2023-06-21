@@ -15,10 +15,16 @@ const alignmentStyles: Alignment = {
     justify: 'ce-paragraph--justify',
 }
 
+interface CustomConfig extends Config {
+    placeholder?: string
+    preserveBlank?: boolean
+    defaultAlignment?: AlignmentObj
+}
+
 type AlignmentObj = keyof typeof alignmentStyles
 
 export default class Paragraph {
-    private config: Config;
+    private config: CustomConfig;
     private readOnly: boolean;
     private _CSS: { block: any; wrapper: string; alignment: Alignment };
     private api: Api;
@@ -78,7 +84,7 @@ export default class Paragraph {
 
         this._data = {
             text: data.text || '',
-            alignment: data.alignment || config.defaultAlignment || Paragraph.DEFAULT_ALIGNMENT
+            alignment: data.alignment || this.config.defaultAlignment || Paragraph.DEFAULT_ALIGNMENT
         };
 
         this.data = data;
@@ -164,6 +170,7 @@ export default class Paragraph {
         div.classList.add(this._CSS.wrapper, this._CSS.block);
         div.contentEditable = String(false);
         div.dataset.placeholder = this.api.i18n.t(this._placeholder);
+        div.classList.toggle(this._CSS.alignment[this.config.defaultAlignment || 'left'])
 
         if (!this.readOnly) {
             div.contentEditable = String(true);
