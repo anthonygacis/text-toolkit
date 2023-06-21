@@ -16,7 +16,7 @@ export default defineConfig({
       'meta',
       {
         name: 'google-site-verification',
-        content: 'lke6qpq4v2yAc5ez9ztO0Rc0FmiTpSuCcyu1AK9x4sM'
+        content: ''
       }
     ],
   ],
@@ -27,7 +27,7 @@ export default defineConfig({
     logo: "/logo.png",
     siteTitle: "Text Toolkit",
     editLink: {
-      pattern: 'https://github.com/anthonygacis/psgc-js/edit/main/docs/:path',
+      pattern: 'https://github.com/anthonygacis/text-toolkit/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
     },
     nav: [
@@ -36,7 +36,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the MIT License',
-      copyright: 'Copyright © 2021-present Anthony S. Gacis'
+      copyright: 'Copyright © 2023-present Anthony S. Gacis'
     },
 
     sidebar: [
@@ -64,7 +64,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/anthonygacis/psgc-js' }
+      { icon: 'github', link: 'https://github.com/anthonygacis/text-toolkit' }
     ]
   }
 })
