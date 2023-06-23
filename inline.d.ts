@@ -1,6 +1,6 @@
-type InlineConstruct = {
+interface InlineConstruct<T = {}> {
     api: InlineApi
-    config: Object
+    config: T
 }
 
 type InlineApi = {

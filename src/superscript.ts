@@ -1,10 +1,8 @@
 import './index.css'
 import SuperScriptIcon from './asset/superscript.svg?raw'
 
-interface SuperscriptInlineConstruct extends InlineConstruct {
-    config: {
-        textClass: string
-    }
+type SuperscriptConfig = {
+    textClass: string
 }
 
 export default class Superscript {
@@ -14,7 +12,7 @@ export default class Superscript {
     private _css: { textClass: any };
     private tag: string;
 
-    constructor({api, config}: SuperscriptInlineConstruct) {
+    constructor({api, config}: InlineConstruct<SuperscriptConfig>) {
         this.api = api;
         this.button = null;
         this._state = false;
