@@ -1,6 +1,4 @@
-import './index.css'
 import StrikethroughIcon from './asset/strikethrough.svg?raw'
-
 
 export default class Strikethrough {
     private api: InlineApi;
