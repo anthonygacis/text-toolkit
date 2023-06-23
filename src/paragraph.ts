@@ -1,4 +1,3 @@
-import './index.css';
 import {IconAlignCenter, IconAlignJustify, IconAlignLeft, IconAlignRight, IconText} from '@codexteam/icons'
 
 type Alignment = {
@@ -9,10 +8,10 @@ type Alignment = {
 }
 
 const alignmentStyles: Alignment = {
-    left: 'ce-paragraph--left',
-    center: 'ce-paragraph--center',
-    right: 'ce-paragraph--right',
-    justify: 'ce-paragraph--justify',
+    left: 'left',
+    center: 'center',
+    right: 'right',
+    justify: 'justify',
 }
 
 interface CustomConfig extends Config {
@@ -170,7 +169,7 @@ export default class Paragraph {
         div.classList.add(this._CSS.wrapper, this._CSS.block);
         div.contentEditable = String(false);
         div.dataset.placeholder = this.api.i18n.t(this._placeholder);
-        div.classList.toggle(this._CSS.alignment[this.config.defaultAlignment || 'left'])
+        div.style.textAlign = this._CSS.alignment[this.config.defaultAlignment || 'left']
 
         if (!this.readOnly) {
             div.contentEditable = String(true);
@@ -189,28 +188,25 @@ export default class Paragraph {
 
         wrapper.style.display = 'flex'
         wrapper.style.justifyContent = 'center'
-        this.settings.map(tune => {
+        this.settings.forEach(tune => {
             const button = document.createElement('div');
             button.classList.add('cdx-settings-button');
             button.innerHTML = tune.icon;
             button.classList.toggle(this.CSS.settingsButtonActive, tune.name === this.data.alignment);
             wrapper.appendChild(button);
-            return button;
-        }).forEach((element, index, elements) => {
-            element.addEventListener('click', () => {
-                this._toggleTune(this.settings[index].name);
-                this._rerenderSettings(elements);
+            button.addEventListener('click', () => {
+                this._toggleTune(tune.name);
+                this._element.style.textAlign = this._CSS.alignment[this.data.alignment as AlignmentObj]
+                this._reRenderSettings(Array.from(wrapper.children) as HTMLDivElement[]);
             });
-        });
+        })
 
         return wrapper;
     }
 
-    _rerenderSettings(elements: HTMLDivElement[]) {
+    _reRenderSettings(elements: HTMLDivElement[]) {
         elements.forEach((el, i) => {
-            const { name } = this.settings[i] as { name: AlignmentObj };
-            el.classList.toggle(this.CSS.settingsButtonActive, name === this.data.alignment);
-            this._element.classList.toggle(this._CSS.alignment[name], name === this.data.alignment)
+            el.classList.toggle(this.CSS.settingsButtonActive, this.settings[i].name === this.data.alignment);
         });
     }
 

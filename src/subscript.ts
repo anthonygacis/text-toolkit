@@ -1,4 +1,3 @@
-import './index.css'
 import SuperScriptIcon from './asset/subscript.svg?raw'
 
 export default class Subscript {

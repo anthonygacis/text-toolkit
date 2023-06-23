@@ -1,4 +1,3 @@
-import './index.css'
 import SuperScriptIcon from './asset/superscript.svg?raw'
 
 type SuperscriptConfig = {
